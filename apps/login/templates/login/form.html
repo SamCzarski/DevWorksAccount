@@ -1,0 +1,59 @@
+{% load simple_tags %}
+
+{% if not login_url %}
+	{% define request.get_full_path as login_url %}
+{% endif %}
+
+
+<form method="post" action="{{ login_url }}">
+
+	{% csrf_token %}
+
+	<div class="text-danger text-center">
+		{{ form.non_field_errors }}
+	</div>
+
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-text">
+				<i class="far fa-fw fa-user-circle"></i>
+			</span>
+
+			<input
+			  class="form-control"
+			  type="email"
+			  name="username"
+			  placeholder="email">
+		</div>
+		{{ form.username.errors }}
+	</div>
+
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-text">
+				<i class="far fa-fw fa-lock-alt"></i>
+			</span>
+
+			<input
+			  class="form-control"
+			  type="password"
+			  name="password"
+			  placeholder="password">
+		</div>
+		{{ form.password.errors }}
+	</div>
+
+
+	<div class="login-options">
+        <div class="forgot_password">
+            <a href="{% link_with_next '/account/password_reset/' request %}">
+                Forgot password?
+            </a>
+        </div>
+	</div>
+
+	<button id="login" type="submit" class="sign-in">
+		Sign In
+	</button>
+
+</form>

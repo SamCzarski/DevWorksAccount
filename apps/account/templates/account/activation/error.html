@@ -1,0 +1,16 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}
+	Activation Error
+{% endblock %}
+
+{% block page %}
+	<p>{{ message | safe }}</p>
+	{% if bad_link %}
+		<div class="divider"></div>
+		<p>
+			It's possible you've already accepted the activation and returned to this page unintentionally.
+			Please proceed from the <a href={% url 'home' %}>Home Page</a>.
+		</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+
+services:
+  account_db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: account
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - hydraguide
+
+
+  account:
+    build: .
+#    secrets:
+#      - sops_age_key
+    command: >
+      python manage.py runserver_plus 0.0.0.0:8000
+      --cert-file /certs/server.pem
+    environment:
+      CONFIGURATION_FILE: server_configurations.yaml
+    volumes:
+      - ~/.sops.yaml:/root/.sops.yaml:ro
+      - ~/.config/sops/age/keys.txt:/root/.config/sops/age/keys.txt:ro
+      - ../certs/:/certs:ro
+    ports:
+      - "8000:8000"
+    depends_on:
+      - account_db
+    networks:
+      - hydraguide
+
+
+volumes:
+  postgres_data:
+
+networks:
+  hydraguide:
+    external: true
+
+secrets:
+  db_password:
+    file: ./db_password
+#  sops_age_key:
+#    file: ~/.config/sops/age/keys.txt

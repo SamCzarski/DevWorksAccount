@@ -1,0 +1,42 @@
+{% extends 'simple-user-page.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	Manage Work Token Client
+{% endblock %}
+
+{% block page %}
+	{% if client %}
+		<div>Client ID: {{ client.client_id }}</div>
+	{% else %}
+		<div>You have no worktoken client</div>
+	{% endif %}
+	<hr/>
+	<form method="post" onkeydown="return event.key !== 'Enter';">
+		{% csrf_token %}
+		{{ form | crispy }}
+		{{ form.client_sectet.errors }}
+		<div class="float-right">
+			<button class="btn btn-primary" type="submit">
+				{% if client %}
+					Update
+				{% else %}
+					Create
+				{% endif %}
+			</button>
+		</div>
+	</form>
+
+	{% if client %}
+		<hr/>
+		<form method="post" onkeydown="return event.key !== 'Enter';">
+			{% csrf_token %}
+			<input type="hidden" name="_method" value="DELETE">
+			<div class="float-right">
+				<button class="btn btn-danger" type="submit">
+					Delete Work Token Client
+				</button>
+			</div>
+		</form>
+	{% endif %}
+{% endblock %}

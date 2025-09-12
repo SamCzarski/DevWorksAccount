@@ -1,0 +1,19 @@
+{% load simple_tags %}
+{% if social_accounts %}
+	<div class="idp text-center">
+		{% for social_account in social_accounts %}
+			{% url 'social:begin' social_account as social_login %}
+			{% social_name social_account as name %}
+			<a
+			  class="image_button"
+			  title="Login with {{ name }}"
+			  href="{% link_with_next social_login request %}">
+				<img
+				  class="p-1"
+				  alt="{{ name }}"
+				  src="{% as_static 'img/'|add:name|lower|add:'-sign-in.png' %}"/>
+			</a>
+
+		{% endfor %}
+	</div>
+{% endif %}

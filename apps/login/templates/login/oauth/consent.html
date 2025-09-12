@@ -1,0 +1,47 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}{{ client_name }}{% endblock %}
+
+{% block page %}
+	<div class="text-center my-3">
+		<div class="logo">
+			<img
+			  src="{{ logo_uri }}"
+			  alt="Client Application">
+		</div>
+	</div>
+
+	<p>
+		Access provided by
+		<a href="{{ client_uri }}">
+			{{ owner }}
+		</a>.
+	</p>
+
+	<div class="form-group pb-2">
+		<div>
+			<strong>Granted Access</strong>
+		</div>
+		<ul>
+			{% for scope in  scopes %}
+				<li class="text-capitalize">
+					{{ scope }}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<form method="post">
+		{% csrf_token %}
+		<input
+		  type="hidden"
+		  name="consent_challenge"
+		  value="{{ consent_challenge }}"/>
+		<button
+		  class="btn btn-primary"
+		  type="submit">
+			Continue
+		</button>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'simple-user-page.html' %}
+{% load static %}
+
+{% block title %}
+	Join Project or Organization
+{% endblock %}
+
+{% block page %}
+	<form
+	  method="post"
+	  action="{% url 'invite-validate' %}">
+		{% csrf_token %}
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-text">
+					<i class="far fa-fw fa-key"></i>
+				</span>
+
+				<input
+				  type="text"
+				  name="invite-token"
+				  class="form-control input_pass"
+				  value=""
+				  placeholder="Invite code">
+
+				<button
+				  class="btn btn-primary"
+				  type="submit">
+					Join
+				</button>
+			</div>
+			<div class="form-text text-muted text-center">
+				Enter the code which was provided to you and click "Join".
+			</div>
+		</div>
+
+	</form>
+
+	{% include "nextsteps.html" %}
+
+{% endblock %}

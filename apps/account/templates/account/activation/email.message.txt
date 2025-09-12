@@ -1,0 +1,12 @@
+{% autoescape off %}
+Welcome to your DecWorks Account
+
+Activate: {{ url }}
+
+If you did not create an account you can ignore this email.
+
+If you would like to contact our support about this message please email support@example.com
+
+Sincerely,
+The DecWorks Team
+{% endautoescape %}

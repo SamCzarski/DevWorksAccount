@@ -1,0 +1,45 @@
+{% extends 'simple-user-page.html' %}
+
+{% load static %}
+{% load simple_tags %}
+
+{% block title %}
+	Resend Activation Email
+{% endblock %}
+
+{% block page %}
+
+	<p class="m-4">
+		Please wait at least 10 minutes, and check your spam folder before resending the
+		activation email.
+	</p>
+
+	<form method="post" action="{{ login_url }}">
+		{% csrf_token %}
+
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-text">
+					<i class="far fa-fw fa-user-circle"></i>
+				</span>
+
+				<input
+				  value=""
+				  class="form-control"
+				  type="email"
+				  name="email"
+				  placeholder="email">
+			</div>
+
+			<div class="text-danger small py-1">
+				{{ email }}
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-primary w-100">
+			Resend activation email
+		</button>
+
+	</form>
+
+{% endblock %}

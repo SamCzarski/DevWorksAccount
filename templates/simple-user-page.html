@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load simple_tags %}
+
+{% block content %}
+
+
+	<div class="simple-page">
+		<div class="simple-page-content">
+			<header>
+				{# header with logo if no auth #}
+				{% if not user.is_authenticated or hide_menu %}
+					<div class="logo">
+						<img
+						  class="img-fluid"
+						  src="{% static 'img/dev_works.svg' %}"
+						  alt="DevWorks">
+					</div>
+					<div class="text-center my-3">
+				{% else %}
+					<div class="text-center mb-3">
+				{% endif %}
+				<h1>
+					{% block title %}
+					{% endblock %}
+				</h1>
+				</div>
+			</header>
+
+			<hr/>
+
+			{% block page %}
+			{% endblock %}
+
+		</div>
+	</div>
+{% endblock %}

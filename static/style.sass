@@ -1,0 +1,286 @@
+$SHADOW: rgb(229, 229, 229)
+
+$DEVWORKS_GRAY_MAIN: #455A64
+$DEVWORKS_GRAY_ALT: #607D8B
+
+$WHITE: #FFFFFF
+$BLACK: #000000
+
+$FONT: HelveticaNeueLTPro-Lt, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+$FONT_LESS_BOLD: HelveticaNeueLTPro-Md, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+$FONT_BOLD: HelveticaNeueLTPro-Hv, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+$FONT_BOLDER: HelveticaNeueLTPro-Blk, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+$DEFAULT_LINK: $BLACK
+$DEFAULT_LINK_VISITED: $DEVWORKS_GRAY_ALT
+
+$primary: $DEVWORKS_GRAY_MAIN
+
+@import "imc-fonts"
+@import "../.bootstrap/bootstrap-5.3.1/scss/bootstrap.scss"
+// MUST KEEP THIS VERSION OF BOOTSTRAP SAME as DIST VERSIONS (see: static)
+
+body, html
+  margin: 0
+  padding: 0
+  font-family: $FONT
+  font-size: 1rem
+  background-color: red
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+body
+  background-position: center bottom
+  background-size: 2400px
+  background-repeat: repeat-x
+
+.background-image
+  background-image: url(img/devworks-background.svg)
+
+
+h1, h2
+  font-family: $FONT_BOLDER
+
+h3, h4, h5, h6
+  font-family: $FONT_BOLD
+
+h1
+  font-size: 130%
+
+h2
+  font-size: 125%
+
+h3
+  font-size: 120%
+
+h4
+  font-size: 115%
+
+h5
+  font-size: 110%
+
+h6
+  font-size: 105%
+
+a
+  &:visited
+    color: $DEFAULT_LINK_VISITED
+
+  &:hover
+    color: $DEVWORKS_GRAY_MAIN
+
+strong
+  font-family: $FONT_BOLD
+
+
+#cookielaw
+  background: rgb(43, 55, 59)
+  color: white
+  display: flex
+  z-index: 999
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  padding: 1em
+
+  a
+    color: white
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+#main
+  position: relative
+  min-height: 98vh !important
+  @media only screen and (max-width: 500px)
+    background-color: white
+
+
+#content
+  position: relative
+  margin-top: 1em
+
+
+#footer
+  width: 100%
+  height: 40px
+  text-align: center
+
+  .legal
+    @extend .pt-2 !optional
+    @extend .px-2 !optional
+    display: inline-block
+    text-align: center
+    font-weight: bold
+    height: 40px
+    @media only screen and (min-width: 500px)
+      background-color: rgba(226, 234, 243, 0.8)
+
+
+.navbar
+  min-height: 92px
+  box-shadow: 0 1px 2px #cbcfd4
+  @include media-breakpoint-up(sm)
+    min-height: 52px
+
+  a.navbar-brand
+    color: $primary
+    font-family: $FONT_BOLDER
+
+  .navbar-brand img
+    height: 22px
+    padding-bottom: 5px
+
+.image_button
+  @extend btn !optional
+
+  img
+    @extend .img-fluid !optional
+    width: 190px !important
+
+  &:hover
+    opacity: 0.8
+
+  &:focus
+    outline: none
+
+
+.simple-page
+  @extend .d-flex !optional
+  @extend .justify-content-center !optional
+  @extend .align-items-center !optional
+  min-height: calc(100vh - 60px)
+
+  @media only screen and (max-width: 500px)
+    align-items: normal !important
+
+  .form-group
+    margin: 1em 0 1em 0
+
+  .logo
+    img
+      @extend .img-fluid !optional
+
+  .form-group
+    margin: 1em 0 1em 0
+
+  .login-options
+    clear: both
+    padding-bottom: 1em
+
+  .forgot_password
+    float: right
+
+    a
+      text-decoration: none
+
+      &:hover
+        text-decoration: underline
+
+  .btn
+    font-family: $FONT_BOLD
+
+
+  .sign-in
+    @extend .btn !optional
+    @extend .btn-primary !optional
+    font-family: $FONT_BOLD
+    width: 100%
+
+  .sign-up
+    @extend .btn !optional
+    background: forestgreen !important
+    font-family: $FONT_BOLD
+    color: white
+    width: 100%
+
+  .idp
+    a
+      text-decoration: none
+
+
+  .missing-activation
+    @extend .small !optional
+    @extend .pt-2 !optional
+    text-align: center
+
+    a
+      text-decoration: none
+
+      &:hover
+        text-decoration: underline
+
+  .simple-page-content
+    @extend .p-4 !optional
+    width: 450px
+    background-color: white
+    border: 1px solid lightgray
+    @media only screen and (max-width: 500px)
+      border: none
+
+
+    #hint_id_new_password1
+      display: none
+
+    .send-password-reset
+      @extend .btn !optional
+      @extend .btn-primary !optional
+      font-family: $FONT_BOLD
+      width: 100%
+
+
+.divider
+  @extend .my-3 !optional
+  display: flex
+  align-items: center
+  text-align: center
+
+  &:before, &:after
+    content: ''
+    flex: 1
+    border-bottom: 1px solid #000
+
+  .divider-text
+    font-family: $FONT_BOLD
+    background-color: #fff
+    padding: 0 10px
+    position: relative
+    z-index: 1
+
+  .divider:not(:empty)::before
+    margin-right: .25em
+
+  .divider:not(:empty)::after
+    margin-left: .25em
+
+
+ul.errorlist
+  @extend .small !optional
+  @extend .text-danger !optional
+  padding: 0
+  margin: 0
+
+  li
+    list-style-type: none
+    color: red
+
+.working-profile-height
+  height: 725px
+
+// CSP forbids inline images
+// todo: later try to use background-image, or some image loading
+.form-select
+   background-image: none
+
+.form-check-input:checked[type=checkbox]
+  background-image: none
+
+.form-check-input:checked[type=radio]
+  background-image: none
+
+.form-check-input[type=checkbox]:indeterminate
+  background-color: #0d6efd
+  border-color: #0d6efd
+  background-image: none

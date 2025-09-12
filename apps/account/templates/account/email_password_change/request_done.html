@@ -1,0 +1,28 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}
+	Email Password Reset Sent
+{% endblock %}
+
+{% block page %}
+	<p>
+		We've emailed you instructions for setting your password, if an account exists with the
+		email you entered.
+	</p>
+	<p>
+		You should receive them shortly.
+	</p>
+
+	<div>
+		If you don't receive an email:
+		<ol>
+			<li>
+				Please make sure you've entered the address you registered with.
+			</li>
+			<li>
+				And check your spam folder.
+			</li>
+		</ol>
+	</div>
+
+{% endblock %}

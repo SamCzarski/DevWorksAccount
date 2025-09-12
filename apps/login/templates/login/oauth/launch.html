@@ -1,0 +1,31 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}Authentication Complete{% endblock %}
+
+{% block page %}
+
+	<div class="form-group pb-2">
+		<div>
+			<strong>Authentication Complete</strong>
+		</div>
+	</div>
+	<div>
+		You will be redirected to your application.
+		<hr/>
+		<a id="redirect" href="{{ redirect }}">
+			Click here if your application is not opened.
+		</a>
+		<hr/>
+		If this window stays open after launching the application it's safe to close.
+	</div>
+
+{% endblock %}
+
+{% block script %}
+	<script nonce="{{ request.csp_nonce }}">
+        $(document).ready(function () {
+            window.location.assign("{{ redirect | safe }}");
+        });
+	</script>
+{% endblock %}
+

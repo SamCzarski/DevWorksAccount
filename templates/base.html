@@ -1,0 +1,139 @@
+{% load static %}
+{% load simple_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="x-devworks-version" content="{% version %}">
+	<title>{% block title %}{% endblock %} @ DevWorks</title>
+	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+	<link rel="stylesheet" href="{% static "font-awesome/css/all.min.css" %}"/>
+	<link rel="stylesheet" href="{% static "style.css" %}"/>
+
+	<link rel="stylesheet" href="{% static "bootstrap-tagsinput.css" %}"/>
+</head>
+
+<body class="background-image">
+<div id="main">
+	{% if user.is_authenticated and not hide_menu %}
+		<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<div class="container-fluid">
+				<a
+				  class="navbar-brand"
+				  href="/">
+					<img
+					  class="navbar-logo"
+					  src="{% static 'img/dev_works.svg' %}"
+					  alt="DevWorks">
+					<span
+					  class="stronger d-block d-md-inline-block">
+						Account Service
+					</span>
+				</a>
+
+				<button
+				  class="navbar-toggler"
+				  type="button"
+				  data-bs-toggle="collapse"
+				  data-bs-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item dropdown">
+							<a
+							  class="nav-link dropdown-toggle"
+							  href="#"
+							  id="navUserDropdown"
+							  role="button"
+							  data-bs-toggle="dropdown"
+							  aria-expanded="false">
+								Account
+							</a>
+							<ul
+							  class="dropdown-menu"
+							  aria-labelledby="navUserDropdown">
+								<li>
+									<a
+									  class="dropdown-item"
+									  href="{% url 'profile' %}">
+										User Profile
+									</a>
+								</li>
+								{% for group in user.groups.all %}
+									{% if group.name == "Client Work Token Admin" %}
+										<li>
+											<a class="dropdown-item" href="{% url 'worktoken' %}">
+												Work Token Client
+											</a>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						{% if user.is_staff %}
+							<li class="nav-item dropdown">
+								<a
+								  class="nav-link dropdown-toggle"
+								  href="#"
+								  id="navAdminDropdown"
+								  data-bs-toggle="dropdown"
+								  aria-expanded="false">
+									Admin
+								</a>
+								<ul
+								  class="dropdown-menu"
+								  aria-labelledby="navAdminDropdown">
+									<li>
+										<a
+										  class="dropdown-item"
+										  href="{% url 'clients' %}">
+											Clients
+										</a>
+									</li>
+								</ul>
+							</li>
+						{% endif %}
+						<li class="nav-item">
+							<a
+							  class="nav-link"
+							  href="{% url 'logout' %}#">
+								Sign out
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	{% endif %}
+
+
+	<div id="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+
+	{% include "cookielaw.html" %}
+
+	<footer id="footer">
+		<span class="legal">
+			&#169; {% now "Y" %} DevWorks - Software Development Services
+		</span>
+	</footer>
+</div>
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-5.3.1/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/bootstrap-tagsinput.min.js' %}"></script>
+<script src="{% static 'js/cookielaw.js' %}"></script>
+
+{% block script %}
+{% endblock %}
+
+</body>
+</html>

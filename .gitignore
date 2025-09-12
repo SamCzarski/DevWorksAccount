@@ -1,0 +1,8 @@
+local.*
+*.sqlite3
+.DS_STORE
+.idea
+*.pyc
+*.ipynb
+node_modules
+db_password

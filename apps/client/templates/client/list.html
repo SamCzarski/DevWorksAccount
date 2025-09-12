@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Client List{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="card mt-5">
+			<div class="card-header">
+				<h1>Clients</h1>
+			</div>
+			<div class="card-body">
+
+				<h2>Create New</h2>
+				<div class="">
+					<a href="{% url 'web-client-create' %}" class="btn btn-default btn-outline-primary">
+						JS Client
+					</a>
+					<a href="{% url 'mobile-client-create' %}" class="btn btn-default btn-outline-primary">
+						Mobile Client
+					</a>
+					<a href="#" class="btn btn-default btn-outline-primary">Service Token</a>
+				</div>
+
+				<h2 class="mt-5">Current Clients</h2>
+				<div>
+					Records: {{ clients | length }}<br/>
+					Filter:
+					{% for client_type in client_types %}
+						<a href="{{ request.path }}?filter={{ client_type }}">
+							{{ client_type }}
+						</a>
+						&nbsp;|&nbsp;
+					{% endfor %}
+					<a href="{{ request.path }}">
+						None
+					</a>
+				</div>
+
+				{% for client in clients %}
+					<div class="card mt-3">
+						<div class="card-header">
+							<div style="float:right">
+								{% if client.grant_types.0 == 'client_credentials' %}
+
+								{% elif client.grant_types.0 == 'implicit' %}
+									<a href="{% url 'web-client-edit'  client.client_id %}"
+									   class="btn btn-sm btn-primary btn-outline-default text-white">
+										Edit
+									</a>
+								{% else %}
+									<a href="{% url 'mobile-client-edit'  client.client_id %}"
+									   class="btn btn-sm btn-primary btn-outline-default text-white">
+										Edit
+									</a>
+								{% endif %}
+								<a href="{% url 'client-delete'  client.client_id %}"
+								   class="btn  btn-sm btn-default btn-outline-danger">Delete</a>
+
+							</div>
+							<h3>{{ client.client_name }}</h3>
+						</div>
+
+
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class=" m-3">
+										<img class="img-fluid" style="max-height:175px" src="{{ client.logo_uri }}"/>
+									</div>
+								</div>
+								<div class="col-9">
+									<h4>
+										{% if client.grant_types.0 == 'implicit' %}
+											JS Client
+										{% else %}
+											Mobile
+										{% endif %}:
+										{{ client.owner }}
+									</h4>
+									<div>
+										Client ID: {{ client.client_id }}
+									</div>
+									<div>
+										Owner: {{ client.owner }}
+									</div>
+									<div>
+										Scope: {{ client.scope }}
+									</div>
+									<div>
+										Audience: {{ client.audience | join:", " }}
+									</div>
+									<div>
+										Grant: {{ client.grant_types | join:", " }}
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

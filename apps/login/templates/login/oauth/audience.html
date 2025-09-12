@@ -1,0 +1,20 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}Welcome to DevWorks{% endblock %}
+
+
+{% block page %}
+	<p>
+		This is the first time your account is accessing DevWorks Web.
+	</p>
+	<p>
+		Choose continue to enable DevWorks configuration.
+	</p>
+
+	<form method="post">
+		{% csrf_token %}
+		<button class="btn btn-primary" type="submit">
+			Continue
+		</button>
+	</form>
+{% endblock %}

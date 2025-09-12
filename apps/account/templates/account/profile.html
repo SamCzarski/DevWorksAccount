@@ -1,0 +1,189 @@
+{% extends 'simple-user-page.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load simple_tags %}
+
+{% block title %}
+	{% if create_mode %}
+		Create Account
+	{% else %}
+		User Profile
+	{% endif %}
+
+{% endblock %}
+
+{% block page %}
+	<div class="working-profile-height">
+
+		{% if not create_mode %}
+			<ul class="nav nav-tabs" id="optionTabs" role="tablist">
+
+				<li class="nav-item" role="presentation">
+					<a
+					  href="#details"
+					  class="nav-link active"
+					  id="details-tab"
+					  data-bs-toggle="tab"
+					  data-bs-target="#details"
+					  type="button"
+					  role="tab"
+					  aria-controls="details"
+					  aria-selected="true">
+						Details
+					</a>
+				</li>
+
+
+				<li class="nav-item" role="presentation">
+					<a
+					  href="#password"
+					  class="nav-link"
+					  id="password-tab"
+					  data-bs-toggle="tab"
+					  data-bs-target="#password"
+					  type="button"
+					  role="tab"
+					  aria-controls="existing"
+					  aria-selected="false">
+						Password
+					</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a
+					  href="#social"
+					  class="nav-link"
+					  id="social-tab"
+					  data-bs-toggle="tab"
+					  data-bs-target="#social"
+					  type="button"
+					  role="tab"
+					  aria-controls="existing"
+					  aria-selected="false">
+						Social Logins
+					</a>
+				</li>
+				<li class="nav-item" role="presentation">
+					<a
+					  href="#delete"
+					  class="nav-link"
+					  id="delete-tab"
+					  data-bs-toggle="tab"
+					  data-bs-target="#delete"
+					  type="button"
+					  role="tab"
+					  aria-controls="existing"
+					  aria-selected="false">
+						Delete
+					</a>
+				</li>
+			</ul>
+		{% endif %}
+
+		<div
+		  class="tab-content my-3"
+		  id="tabOptions">
+
+			<div
+			  class="tab-pane fade show active"
+			  id="details"
+			  role="tabpanel"
+			  aria-labelledby="details-tab">
+
+				<form
+				  method="post"
+				  autocomplete="off">
+					{% csrf_token %}
+					{{ form | crispy }}
+
+					<button
+					  class="btn btn-primary w-100"
+					  type="submit">
+						{% if create_mode %}
+							Create
+						{% else %}
+							Update
+						{% endif %}
+					</button>
+				</form>
+			</div>
+
+			{% if not create_mode %}
+				<div
+				  class="tab-pane fade show my-3"
+				  id="password"
+				  role="tabpanel"
+				  aria-labelledby="password-tab">
+
+					<div class="my-2">
+						Primary Email: <strong>{{ user.email }}</strong>
+					</div>
+
+					<a
+					  href="{% url 'password_change' %}"
+					  class="btn btn-primary w-100 text-white mb-1">
+						Change Password
+					</a>
+
+					<a
+					  href="{% url 'password_reset' %}"
+					  class="btn btn-primary w-100 text-white mb-1">
+						Forgot your password?
+					</a>
+
+				</div>
+
+				<div
+				  class="tab-pane fade show my-3"
+				  id="social"
+				  role="tabpanel"
+				  aria-labelledby="social-tab">
+					{% for social_account in social_accounts %}
+						{% social_icon social_account as icon %}
+						{% social_name social_account as name %}
+						<div class="mb-1">
+							{% if social_account in user_socials %}
+								{% url 'social:disconnect' social_account as url %}
+								<form action="{% link_with_next url request %}" method="post">
+									{% csrf_token %}
+									<button class="btn btn-success w-100 text-white">
+										<i class="m-2 fab {{ icon }}"></i>
+										Disconnect {{ name }}
+									</button>
+								</form>
+							{% else %}
+								{% url 'social:begin' social_account as url %}
+								<a href="{% link_with_next url request %}"
+								   class="btn btn-warning w-100 text-black">
+									<i class="m-2 fab {{ icon }}"></i>
+									Connect {{ name }}
+								</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+
+				</div>
+
+				<div
+				  class="tab-pane fade show my-3"
+				  id="delete"
+				  role="tabpanel"
+				  aria-labelledby="delete-tab">
+					<a
+					  href="/apps/account/delete"
+					  class="btn btn-danger w-100 text-white">
+						<i class="fas fa-exclamation-triangle"></i>
+						Delete Your Account
+					</a>
+
+				</div>
+
+			{% endif %}
+
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block script %}
+	<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

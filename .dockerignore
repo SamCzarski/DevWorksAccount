@@ -1,0 +1,5 @@
+local.*
+docker-compose.yml
+run.sh
+dist
+prepare-secrets.sh

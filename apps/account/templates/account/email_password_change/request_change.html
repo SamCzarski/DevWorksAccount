@@ -1,0 +1,23 @@
+{% extends 'simple-user-page.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	Email Password Reset
+{% endblock %}
+
+
+{% block page %}
+	<form
+	  action="{% url 'password_reset' %}"
+	  method="post">
+
+		{% csrf_token %}
+		{{ form | crispy }}
+
+		<button
+		  class="btn btn-primary w-100"
+		  type="submit">
+			Submit
+		</button>
+	</form>
+{% endblock %}

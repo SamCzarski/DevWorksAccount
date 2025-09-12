@@ -1,0 +1,122 @@
+{% extends 'simple-user-page.html' %}
+
+{% load crispy_forms_tags %}
+{% load simple_tags %}
+
+{% block title %}Social Authentication Login{% endblock %}
+
+{% block page %}
+
+	<div>
+
+		<div class="my-3">
+			<h4>Primary Email</h4>
+			<div>{{ email }}</div>
+		</div>
+
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button
+				  class="nav-link active"
+				  id="create-tab"
+				  data-bs-toggle="tab"
+				  data-bs-target="#create"
+				  type="button"
+				  role="tab"
+				  aria-controls="create"
+				  aria-selected="true">
+					Create
+				</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button
+				  class="nav-link"
+				  id="existing-tab"
+				  data-bs-toggle="tab"
+				  data-bs-target="#existing"
+				  type="button"
+				  role="tab"
+				  aria-controls="existing"
+				  aria-selected="false">
+					Existing
+				</button>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+
+			<div
+			  class="tab-pane fade show active my-3"
+			  id="create"
+			  role="tabpanel"
+			  aria-labelledby="create-tab">
+				<form method="post">
+					{% csrf_token %}
+					{{ create_form | crispy }}
+					<button
+					  type="submit"
+					  class="btn btn-primary">
+						Continue
+					</button>
+				</form>
+			</div>
+
+			<div
+			  class="tab-pane fade"
+			  id="existing"
+			  role="tabpanel"
+			  aria-labelledby="existing-tab">
+				<p class="mt-5">
+					Existing account (and login with this in the future)
+				</p>
+
+				<form
+				  action="{{ login_url }}"
+				  method="post">
+
+					{% csrf_token %}
+
+					<div class="text-danger text-center">
+						{{ form.non_field_errors }}
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-text">
+								<i class="far fa-fw fa-user-circle"></i>
+							</span>
+							<input
+							  class="form-control"
+							  type="email"
+							  name="username"
+							  placeholder="email">
+						</div>
+						{{ form.username.errors }}
+					</div>
+
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-text">
+								<i class="far fa-fw fa-lock-alt"></i>
+							</span>
+							<input
+							  class="form-control"
+							  type="password"
+							  name="password"
+							  placeholder="password">
+						</div>
+						{{ form.password.errors }}
+					</div>
+
+					<button type="submit" class="sign-in">
+						Sign In
+					</button>
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

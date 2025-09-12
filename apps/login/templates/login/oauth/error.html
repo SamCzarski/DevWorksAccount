@@ -1,0 +1,14 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page %}
+	<div class="form-group pb-2">
+		<div>
+			<strong>{{ title }}</strong>
+		</div>
+	</div>
+	<div>
+		{{ error }}
+	</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'simple-user-page-no-title.html' %}
+{% load static %}
+{% load simple_tags %}
+
+{% block title %}
+	Sign in
+{% endblock %}
+
+{% block script %}
+	<script nonce="{{ request.csp_nonce }}">
+        $(document).ready(function () {
+            const button = document.getElementById("login");
+            $(window).on('beforeunload', function () {
+                $(button).prop('disabled', true);
+            });
+            $(window).on('load', function () {
+                $(button).prop('disabled', false);
+            });
+        });
+	</script>
+{% endblock %}
+
+
+{% block page %}
+	<div class="text-center my-3 ">
+		<strong>Sign in with email</strong>
+	</div>
+
+	{% include "login/form.html" %}
+
+	{% if social_accounts %}
+
+		<div class="divider">
+			<span class="divider-text">Or...</span>
+		</div>
+
+		{% include "login/idp.html" %}
+
+		<hr class="text-light"/>
+
+	{% endif %}
+
+	<div class="divider">
+	</div>
+
+	<a
+	  class="sign-up text-white"
+	  href="{% link_with_next '/account/create/' request %}">
+		Create An Account
+	</a>
+
+	<div class="missing-activation">
+		<a href="{% url 'revalidate-account' %}">
+            Didn't receive an activation email?
+        </a>
+	</div>
+
+{% endblock %}

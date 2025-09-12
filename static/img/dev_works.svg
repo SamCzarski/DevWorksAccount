@@ -1,0 +1,68 @@
+<!-- Simple, scalable SVG logo for "DevWorks" with requested viewBox -->
+<!-- You can copy just the <svg>...</svg> portion into your app -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 750 194.8"
+  role="img"
+  aria-labelledby="title desc"
+  width="100%"
+  height="auto"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <title id="title">DevWorks Logo</title>
+  <desc id="desc">Wordmark "DevWorks" with a simple hexagon mark containing interlocking D and W strokes.</desc>
+
+  <!-- ====== Style (easy theming) ====== -->
+  <defs>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .wordmark { fill: #E5E7EB; }               /* Gray-200 */
+    .mark-fill { fill: url(#accent); }
+    .mark-stroke { stroke: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .wordmark { fill: #111827; }              /* Slate-900 */
+      .mark-stroke { stroke: #0B1020; }
+    }
+  </style>
+
+  <!-- ====== Layout guides (invisible) ====== -->
+  <g opacity="0" id="safe-area">
+    <rect x="0" y="0" width="750" height="194.8" fill="none"/>
+  </g>
+
+  <!-- ====== Logo Mark (left) ====== -->
+  <!-- Hexagon centered near left; sized to balance the wordmark -->
+  <g transform="translate(28,22)">
+    <!-- Regular hexagon: radius ~ 68 -->
+    <polygon class="mark-fill" points="
+      68,0  136,39  136,117  68,156  0,117  0,39
+    " rx="16" ry="16" />
+
+    <!-- Inner strokes forming a stylized D + W -->
+    <!-- D: vertical spine + outer curve -->
+    <path class="mark-stroke" d="M28 32 L28 124" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path class="mark-stroke" d="M28 32 C96 36, 108 60, 108 78 C108 110, 82 124, 28 124" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+    <!-- W: three angled strokes -->
+    <path class="mark-stroke" d="M46 60 L62 110 L78 78 L94 110" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ====== Wordmark ====== -->
+  <!-- Position the text baseline for visual balance with the mark -->
+  <g class="wordmark" transform="translate(200,0)">
+    <text x="0" y="128" font-family="'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="1">
+      Dev<tspan font-weight="800">Works</tspan>
+    </text>
+  </g>
+</svg>
+
+<!-- Notes:
+- The SVG uses a gradient accent for the hexagon; change .mark-fill to a solid fill if desired.
+- To recolor text, edit .wordmark fill in the <style> block.
+- The viewBox matches your request: 0 0 750 194.8.
+- For a flatter look, replace fill: url(#accent) with a solid color (e.g., #0EA5E9).
+-->

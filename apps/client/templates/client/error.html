@@ -1,0 +1,12 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block page %}
+	<div class="card-header text-danger">
+		<p>{{ description }}</p>
+		<p>Hint: {{ hint }}</p>
+	</div>
+{% endblock %}

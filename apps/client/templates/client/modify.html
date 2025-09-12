@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Client Create{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h1>Client</h1>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                    <div class="text-danger">ERROR: {{ error }}</div>
+                {% endif %}
+                <form method="post" onkeydown="return event.key !== 'Enter';">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <div class="float-right">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

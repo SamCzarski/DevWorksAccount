@@ -1,0 +1,33 @@
+{% extends 'simple-user-page.html' %}
+
+{% block title %}
+	Client Applications
+{% endblock %}
+
+{% block page %}
+
+
+	<p>
+		@todo: the only functioning button on this page is "Reset All Access". <br/>
+		This is just mostly a mock up
+	</p>
+	<hr/>
+	{% for session, count in session_count.items %}
+		<h2 class="pt-3">{{ session }}</h2>
+		<button class="btn  btn-outline-dark">Reset Access</button>
+		<button class="btn  btn-outline-info">Logout</button>
+	{% endfor %}
+
+	{% if not session_count %}
+		<div class="bold">No Applications</div>
+	{% else %}
+		<h2 class="pt-3">Bulk Controls</h2>
+		<form method="post">
+			{% csrf_token %}
+			<button class="btn  btn-outline-dark w-100">
+				Reset All Access
+			</button>
+		</form>
+	{% endif %}
+
+{% endblock %}
