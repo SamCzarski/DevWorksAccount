@@ -67,10 +67,6 @@ create a directory called `decrypted` to hold the decrypted files
 ```bash
 find ./ -type f -name "*.enc" -print0 | xargs -0 -I{} sh -c 'sops --decrypt "$1" > "$(basename "$1" .enc)"' _ {}
 ```
-clean up the `.enc` files
-```bash
-rm *.enc
-```
 
 # Development
 

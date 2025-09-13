@@ -1,7 +1,7 @@
 #!/bin/sh
 
 NAME="DevWorksAccount"
-CERTS="../certs/"
+CERTS="../DevWorksTools/certs/"
 SERVER_PEM="$CERTS/server.pem"
 SERVER_KEY="$CERTS/server.key"
 IP=0.0.0.0
