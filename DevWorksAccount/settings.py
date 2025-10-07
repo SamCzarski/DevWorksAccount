@@ -342,6 +342,13 @@ RATELIMIT_USE_CACHE = 'default'
 
 CSP_CONNECT_SRC = (
     "'self'",
+    "https://10.0.0.215:4444",
+    "https://localhost:8000",
+    "https://10.0.0.215:8000",
+    "ws://localhost:3000",
+    "wss://localhost:3000",
+    "ws://10.0.0.215:3000",
+    "wss://10.0.0.215:3000",
 )
 CSP_FORM_ACTION = (
     "'self'",
