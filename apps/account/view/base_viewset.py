@@ -16,7 +16,7 @@
 # from devworks_drf.form_field_errors import form_errors
 # # from devworks_drf.pagination import SearchResultsSetPagination, AggregationPagination
 # # from devworks_drf.request_history import RequestHistory
-# # from decworks_openapi.endpoint_schema import doc_method
+# # from devworks_openapi.endpoint_schema import doc_method
 #
 # log = logging.getLogger(__name__)
 #

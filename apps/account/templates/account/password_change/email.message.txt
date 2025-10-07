@@ -1,15 +1,15 @@
 {% autoescape off %}
-DecWorks Account Update Notification
+DevWorks Account Update Notification
 
-We wanted to inform you that the security settings on your DecWorks account have been updated.
+We wanted to inform you that the security settings on your DevWorks account have been updated.
 
 This message may be sent when:
   1. You reset your password.
   2. We implement an important security update.
 
-No action is required on your part. Please continue using DecWorks.
+No action is required on your part. Please continue using DevWorks.
 
 Sincerely,
-The DecWorks Team
+The DevWorks Team
 
 {% endautoescape %}

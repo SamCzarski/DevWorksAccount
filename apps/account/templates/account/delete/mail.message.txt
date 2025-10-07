@@ -1,10 +1,10 @@
 {% autoescape off %}
-Your DecWorks Account has been deleted
+Your DevWorks Account has been deleted
 
 If your account was not deleted by you please reply to {{ notify_us }}
 
 If you would like to contact our support about this message please email support@example.com
 
 Sincerely,
-The DecWorks Team
+The DevWorks Team
 {% endautoescape %}
