@@ -45,22 +45,6 @@ class UserInfoSerializer(serializers.ModelSerializer):
             }
         }
 
-    # def _providing(self, user):
-    #     member = []
-    #     for provider in user.providers.all():
-    #         member.append(
-    #             self.__member_details(provider)
-    #         )
-    #     return member
-    #
-    # def _participating(self, user):
-    #     member = []
-    #     for participant in user.participants.all():
-    #         member.append(
-    #             member.append(self.__member_details(participant))
-    #         )
-    #     return member
-
     def get_verified_email(self, user):
         # @todo: track status of email verification... should track when too
         return None
