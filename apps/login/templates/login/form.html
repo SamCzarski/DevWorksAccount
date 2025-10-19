@@ -18,12 +18,16 @@
 			<span class="input-group-text">
 				<i class="far fa-fw fa-user-circle"></i>
 			</span>
-
-			<input
-			  class="form-control"
-			  type="email"
-			  name="username"
-			  placeholder="email">
+            <label for="username" class="visually-hidden">Email</label>
+            <input
+              class="form-control"
+              id="username"
+              name="username"
+              type="text"
+              inputmode="email"
+              autocomplete="username"
+              placeholder="email"
+              required>
 		</div>
 		{{ form.username.errors }}
 	</div>
@@ -33,12 +37,15 @@
 			<span class="input-group-text">
 				<i class="far fa-fw fa-lock-alt"></i>
 			</span>
-
-			<input
-			  class="form-control"
-			  type="password"
-			  name="password"
-			  placeholder="password">
+            <label for="password" class="visually-hidden">Password</label>
+            <input
+              class="form-control"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="password"
+              required>
 		</div>
 		{{ form.password.errors }}
 	</div>
