@@ -53,5 +53,5 @@ class UserInfoSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = (
             'id', 'is_active', 'subject', 'sub', 'name', 'first_name', 'last_name',
-            'email', 'verified_email', 'membership', 'groups',
+            'email', 'verified_email', 'groups',
         )

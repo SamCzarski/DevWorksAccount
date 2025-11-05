@@ -310,7 +310,7 @@ EMAIL_BACKEND = 'devworks_mail.AdminEncryptEmailBackend.AdminEncryptEmailBackend
 
 
 
-CSRF_TRUSTED_ORIGINS = ["https://localhost:8000"]
+CSRF_TRUSTED_ORIGINS = ["https://localhost:8000", "https://10.0.0.215:8000"]
 
 # LOGIN_REDIRECT_URL = config.str('LOGIN_REDIRECT_URL')
 LOGIN_REDIRECT_URL = '/'

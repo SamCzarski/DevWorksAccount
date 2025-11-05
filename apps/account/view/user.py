@@ -18,7 +18,8 @@ from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.response import Response
 from social_django.utils import load_strategy
 
-from apps.account import notify, serializers
+from apps.account import notify
+from apps.account.serializers import UserInfoSerializer
 from apps.account.forms import ProfileForm, CreateProfile
 from apps.account.models import Activate, UserProfile
 
@@ -289,7 +290,7 @@ class UserSearchFilter(filters.FilterSet):
 
 
 class UserViewSet(CommonViewSet):
-    serializer_class = serializers.UserInfoSerializer
+    serializer_class = UserInfoSerializer
     filterset_class = UserSearchFilter
     queryset = UserProfile.objects
     meta_resource = ['@USER']
