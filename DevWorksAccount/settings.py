@@ -162,7 +162,6 @@ INSTALLED_APPS = [
     'apps.login.apps.ClientConfig',
     'apps.account.apps.AccountConfig',
     'apps.client.apps.ClientConfig',
-    'apps.api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
