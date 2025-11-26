@@ -97,9 +97,9 @@ def mobile_csp(func):
             logo_uri = consent_info['client']['logo_uri']
         except KeyError:
             pass
-        csp = csp_update(
-            IMG_SRC=logo_uri
-        )
+        csp = csp_update({
+            "img-src": [logo_uri],
+        })
         csp_wrapped = csp(func)
         return csp_wrapped(*args, **kwargs)
 
